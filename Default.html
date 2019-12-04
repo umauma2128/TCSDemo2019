@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  $scope.myWelcome = "First Data";
+  
+$http({
+
+method: 'GET',
+
+url: 'https://5ao9mklbbh.execute-api.us-east-2.amazonaws.com/default/DemoLambdaFun',
+
+data: ''
+
+}).then(function success(response) {
+
+$scope.myWelcome = "Data";
+
+}, function error(response) {
+
+
+$scope.myWelcome = "Error";
+});
+
+});
+</script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+  <p>Today's welcome message is:</p>
+  <h1>{{myWelcome}}</h1>
+</div>
+
+</body>
+</html>
+
+
